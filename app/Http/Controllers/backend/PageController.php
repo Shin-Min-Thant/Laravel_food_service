@@ -33,9 +33,14 @@ class PageController extends Controller
 
         $request->session()->regenerateToken();
 
-        return redirect('/');
+        return redirect('login');
 
     }
+
+    // public function UserAll($id){
+    //     $user = User::find($id)->get();
+    //     return view('userHome',compact('user'));
+    // }
 
     public function UserProfileEdit(){
         $id = Auth::user()->id;

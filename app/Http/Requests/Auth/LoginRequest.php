@@ -28,7 +28,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'multiple' => ['required', 'string', 'email'],
+            'multiple' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -40,12 +40,14 @@ class LoginRequest extends FormRequest
      */
     public function authenticate(): void
     {
+        $this->ensureIsNotRateLimited();
+
         $user = User::where('email',$this->multiple)
         ->orWhere('name',$this->multiple)
         ->orWhere('phone',$this->multiple)
         ->first();
         if (!$user || !Hash::check($this->password,$user->password)) {
-    RateLimiter::hit($this->throttleKey());
+            RateLimiter::hit($this->throttleKey());
 
     throw ValidationException::withMessages([
         'email' => trans('auth.failed'),

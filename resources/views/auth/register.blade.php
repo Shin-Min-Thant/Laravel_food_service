@@ -6,7 +6,7 @@
 <div
 class="container d-flex justify-content-center align-items-center text-center min-vh-100"
 >
-<div class="row border rounded-5 p-3 bg-white shadow box-shadow">
+<div class="row border rounded-5 p-3 bg-white shadow box-shadow bg-secondary">
     <x-guest-layout>
         <form method="POST" action="{{ route('register') }}">
             @csrf
@@ -76,8 +76,9 @@ class="container d-flex justify-content-center align-items-center text-center mi
                 <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800" href="{{ route('login') }}">
                     {{ __('Already registered?') }}
                 </a>
+                <a href="{{route('login')}}" class="text-center">Log In</a>
 
-                <x-primary-button class="ml-4">
+                <x-primary-button class="ml-4 bg-primary">
                     {{ __('Register') }}
                 </x-primary-button>
             </div>

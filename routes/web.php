@@ -43,6 +43,7 @@ Route::middleware(['auth','roles:user'])->group(function(){
         Route::get('user/chicken','UserChicken')->name('userChicken');
         Route::get('user/aboutus','UserAbout')->name('userAbout');
         Route::get('user/logout','UserLogout')->name('userLogout');
+        // Route::get('user/all]','UserAll')->name('user.all');
         Route::get('user/profile/edit','UserProfileEdit')->name('userProfile.edit');
         Route::post('user/profile/store','UserProfileStore')->name('userProfile.store');
         Route::get('user/password/change','UserPasswordChange')->name('userPassword.change');

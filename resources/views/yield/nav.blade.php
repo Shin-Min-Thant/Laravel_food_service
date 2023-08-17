@@ -37,39 +37,45 @@
                     </li>
                     <li class="nav-item"><a href="{{route('userAbout')}}" class="nav-link">About Us</a></li>
 
-
-
-                    <li class="nav-item dropdown">
-                        {{-- @php
+                    @php
                         use Illuminate\Support\Facades\Auth;
                         use App\Models\User;
-                        $id = Auth::user()->id;
-                        $user =User::find($id);
 
-                     @endphp --}}
+                       $user =null;
+                       if (Auth::check()) {
+                            $id = Auth::user()->id;
+                            $user = User::find($id);
+                    }
+                    @endphp
+
+                    <li class="nav-item dropdown">
+                        @if($user)
                         <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <img class="rounded-circle" width="45px" src="{{isset( $user->photo) ? url('uploads/user_img/'.  $user->photo) : url('uploads/no_image.png') }}" alt="profile">
                         </a>
 
                         <ul class="dropdown-menu">
-                            @if (Route::has('login'))
-                                @auth
+
                                     <li><a href="{{ route('userProfile.edit') }}" class="dropdown-item">Edit Profile</a></li>
                                     <li><a href="{{ route('userPassword.change') }}" class="dropdown-item">Change Password</a></li>
                                     <li><a href="{{route('userLogout')}}" class="dropdown-item">Logout</a></li>
+                        </ul>
                                 @else
-
+                                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img class="rounded-circle" width="45px" src="{{isset( $user->photo) ? url('uploads/user_img/'.  $user->photo) : url('uploads/no_image.png') }}" alt="profile">
+                                </a>
+                                <ul class="dropdown-menu">
 
                                     <a href="{{ route('login') }}" class="dropdown-item">Log in</a>
 
-                                    @if (Route::has('register'))
-                                        <a href="{{ route('register') }}" class="dropdown-item">Register</a>
-                                    @endif
-                                @endauth
+
+                                    <a href="{{ route('register') }}" class="dropdown-item">Register</a>
+                                </ul>
 
                          @endif
 
-                        </ul>
+
+
                     </li>
                 </ul>
             </div>

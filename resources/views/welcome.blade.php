@@ -140,7 +140,7 @@
                     </p>
                   </div>
 
-                    <button class=" btn btn-primary mx-3"><a href="signup.html" class="nav-link">Sign Up</a></button>
+                    <button class=" btn btn-primary mx-3"><a href="{{route('register')}}" class="nav-link">Sign Up</a></button>
 
             </div>
           </div>
